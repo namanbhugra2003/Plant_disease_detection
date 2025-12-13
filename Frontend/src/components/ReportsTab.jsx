@@ -20,7 +20,7 @@ const ReportsTab = () => {
 
     const fetchStats = async () => {
       try {
-        const res = await axios.get("http://localhost:5557/manager/reports", {
+        const res = await axios.get("https://plant-disease-detection-5ysx.onrender.com/manager/reports", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setStats(res.data);
@@ -41,8 +41,8 @@ const ReportsTab = () => {
       try {
         const endpoint =
           viewMode === "monthly"
-            ? "http://localhost:5557/manager/reports/monthly"
-            : "http://localhost:5557/manager/forms";
+            ? "https://plant-disease-detection-5ysx.onrender.com/manager/reports/monthly"
+            : "https://plant-disease-detection-5ysx.onrender.com/manager/forms";
 
         const res = await axios.get(endpoint, {
           headers: { Authorization: `Bearer ${token}` },
