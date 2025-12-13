@@ -4,7 +4,7 @@ import { FaHeart, FaRegHeart, FaBookmark, FaRegBookmark, FaSearch, FaFilter, FaS
 import { motion, AnimatePresence } from 'framer-motion';
 import UserTopNavbar from './UserTopNavbar';
 
-const API_BASE_URL = 'http://localhost:5557';
+const API_BASE_URL = 'https://plant-disease-detection-5ysx.onrender.com';
 
 const ArticleView = () => {
   const [articles, setArticles] = useState([]);
