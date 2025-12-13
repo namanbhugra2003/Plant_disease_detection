@@ -93,7 +93,7 @@ function Register() {
     try {
       // Send registration request
       const response = await axios.post(
-        "http://localhost:5557/api/auth/register",
+        "https://plant-disease-detection-5ysx.onrender.com/api/auth/register",
         userData
       );
 
