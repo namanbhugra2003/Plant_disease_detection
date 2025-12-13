@@ -110,7 +110,7 @@ const ArticleManagement = ({ isOpen, onClose }) => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:5557/api/articles');
+      const response = await axios.get('https://plant-disease-detection-5ysx.onrender.com/api/articles');
       console.log('Fetch response:', response);
 
       if (response.data && Array.isArray(response.data)) {
@@ -146,7 +146,7 @@ const ArticleManagement = ({ isOpen, onClose }) => {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:5557/api/articles/${id}`);
+      const response = await axios.delete(`https://plant-disease-detection-5ysx.onrender.com/api/articles/${id}`);
       console.log('Delete response:', response);
   
       if (response.status === 200) {
@@ -169,7 +169,7 @@ const ArticleManagement = ({ isOpen, onClose }) => {
   
   const handleSave = async () => {
     try {
-      const response = await axios.put(`http://localhost:5557/api/articles/${editingArticle._id}`, {
+      const response = await axios.put(`https://plant-disease-detection-5ysx.onrender.com/api/articles/${editingArticle._id}`, {
         title: editingArticle.title,
         content: editor.getHTML()
       });
