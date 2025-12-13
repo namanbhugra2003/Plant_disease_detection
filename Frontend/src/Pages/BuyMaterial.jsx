@@ -25,7 +25,7 @@ const BuyMaterial = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:5557/materials")
+      .get("https://plant-disease-detection-5ysx.onrender.com/materials")
       .then((response) => {
         setMaterials(response.data.data);
         setLoading(false);
@@ -61,7 +61,7 @@ const BuyMaterial = () => {
     setSelectedMaterial(materialId);
 
     axios
-      .get(`http://localhost:5557/materials/${materialId}`)
+      .get(`https://plant-disease-detection-5ysx.onrender.com/materials/${materialId}`)
       .then((response) => {
         setMaterialDetails(response.data);
         setLoadingDetails(false);
