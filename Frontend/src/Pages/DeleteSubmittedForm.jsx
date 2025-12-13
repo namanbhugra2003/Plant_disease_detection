@@ -21,7 +21,7 @@ const DeleteSubmittedForm = ({inquiryId, onClose, onDeleteSuccess}) => {
   
     setLoading(true);
     axios
-      .get(`http://localhost:5557/farmer/${inquiryId}`, {
+      .get(`https://plant-disease-detection-5ysx.onrender.com/farmer/${inquiryId}`, {
         headers: {
           Authorization: `Bearer ${userData.token}`, // Add token to the header
         },
@@ -50,7 +50,7 @@ const DeleteSubmittedForm = ({inquiryId, onClose, onDeleteSuccess}) => {
     }
   
     axios
-      .delete(`http://localhost:5557/farmer/${inquiryId}`, {
+      .delete(`https://plant-disease-detection-5ysx.onrender.com/farmer/${inquiryId}`, {
         headers: {
           Authorization: `Bearer ${userData.token}`, // Add the token to the header
         },
