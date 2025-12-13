@@ -45,7 +45,7 @@ const BubbleMap = () => {
         const token = userData?.token;
         if (!token) return;
 
-        const response = await axios.get("http://localhost:5557/farmer/all", {
+        const response = await axios.get("https://plant-disease-detection-5ysx.onrender.com/farmer/all", {
           headers: { Authorization: `Bearer ${token}` },
         });
 
