@@ -134,7 +134,7 @@ const ArticleCreation = ({ isOpen, onClose }) => {
     };
   
     try {
-      const response = await axios.post('http://localhost:5557/api/articles', articleData, {
+      const response = await axios.post('https://plant-disease-detection-5ysx.onrender.com/api/articles', articleData, {
         onUploadProgress: (progressEvent) => {
           const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
           setUploadProgress(percentCompleted);
