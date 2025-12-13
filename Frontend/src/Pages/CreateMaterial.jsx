@@ -142,7 +142,7 @@ const CreateMaterial = () => {
     };
     setLoading(true);
     axios
-      .post("http://localhost:5557/materials", data)
+      .post("https://plant-disease-detection-5ysx.onrender.com/materials", data)
       .then(() => {
         setLoading(false);
         enqueueSnackbar("Material Created successfully", {
