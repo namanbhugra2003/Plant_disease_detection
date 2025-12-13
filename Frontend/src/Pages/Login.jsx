@@ -34,7 +34,7 @@ const Login = () => {
 
     try {
       // Update the URL to match your backend login endpoint
-      const response = await axios.post('http://localhost:5557/api/auth/login', formData);
+      const response = await axios.post('https://plant-disease-detection-5ysx.onrender.com/api/auth/login', formData);
       
       if (response.data.token) {
         localStorage.setItem('user', JSON.stringify(response.data));
