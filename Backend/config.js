@@ -1,6 +1,11 @@
-export const PORT = 5557;
+import dotenv from "dotenv";
 
-export const mongoDBURL =
-  "mongodb+srv://namanbhugra7_db_user:RSqn6S3MRX5l0igM@cluster1.13nwqo4.mongodb.net/";
-export const JWT_SECRET = "your_jwt_secret_here";
-export const JWT_EXPIRE = "1h";
+dotenv.config();
+
+export const PORT = process.env.PORT || 5557;
+
+export const mongoDBURL = process.env.MONGODB_URL;
+
+export const JWT_SECRET = process.env.JWT_SECRET;
+
+export const JWT_EXPIRE = process.env.JWT_EXPIRE || "1h";
