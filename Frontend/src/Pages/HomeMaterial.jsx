@@ -26,7 +26,7 @@ const HomeMaterial = () => {
   const fetchMaterials = () => {
     setLoading(true);
     axios
-      .get("http://localhost:5557/materials")
+      .get("https://plant-disease-detection-5ysx.onrender.com/materials")
       .then((response) => {
         setMaterials(response.data.data);
         setLoading(false);
@@ -74,7 +74,7 @@ const handleMaterialUpdate = (updatedMaterial) => {
     if (materialToDelete) {
       try {
         await axios.delete(
-          `http://localhost:5557/materials/${materialToDelete}`
+          `https://plant-disease-detection-5ysx.onrender.com/materials/${materialToDelete}`
         );
         setMaterials(
           materials.filter((material) => material._id !== materialToDelete)
