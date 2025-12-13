@@ -36,7 +36,7 @@ const UserProfile = () => {
 
     const fetchUserProfile = async () => {
       try {
-        const response = await axios.get('http://localhost:5557/api/test/profile', {
+        const response = await axios.get('https://plant-disease-detection-5ysx.onrender.com/api/test/profile', {
           headers: { Authorization: `Bearer ${userData.token}` }
         });
         setUserProfile(response.data);
