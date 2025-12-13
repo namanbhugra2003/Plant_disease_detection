@@ -42,7 +42,7 @@ const EditMaterial = ({ id, onClose, onUpdate }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5557/materials/${id}`)
+      .get(`https://plant-disease-detection-5ysx.onrender.com/materials/${id}`)
       .then((response) => {
         setFormData(response.data);
         setLoading(false);
@@ -161,7 +161,7 @@ const EditMaterial = ({ id, onClose, onUpdate }) => {
     setLoading(true);
 
     try {
-      const response = await axios.put(`http://localhost:5557/materials/${id}`, formData);
+      const response = await axios.put(`https://plant-disease-detection-5ysx.onrender.com/materials/${id}`, formData);
       setLoading(false);
       enqueueSnackbar("Material updated successfully", { variant: "success" });
       
