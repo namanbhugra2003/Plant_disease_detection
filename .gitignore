@@ -1,0 +1,12 @@
+# Ignore Python virtual environments
+venv/
+flask-api/venv/
+
+# Ignore model and weight files
+*.h5
+
+# Ignore Python cache files
+*.pyc
+__pycache__/
+
+node_modules/
