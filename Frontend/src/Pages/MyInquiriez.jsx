@@ -24,12 +24,12 @@ const MyInquiriez = () => {
       }
 
       if (showAlerts) {
-        const res = await axios.get("http://localhost:5557/alerts", {
+        const res = await axios.get("https://plant-disease-detection-5ysx.onrender.com/alerts", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setAlerts(res.data);
       } else {
-        const res = await axios.get("http://localhost:5557/farmer", {
+        const res = await axios.get("https://plant-disease-detection-5ysx.onrender.com/farmer", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setInquiries(res.data.data || []);
