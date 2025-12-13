@@ -22,7 +22,7 @@ export const countries = [
     { name: "Bolivia", code: "BO", dialCode: "591" },
     { name: "Bosnia and Herzegovina", code: "BA", dialCode: "387" },
     { name: "Botswana", code: "BW", dialCode: "267" },
-    { name: "India", code: "IN" ,dialCode : "+91"},
+    { name: "India", code: "IN" ,dialCode : "91"},
     { name: "Sri Lanka", code: "LK", dialCode: "94" },
     { name: "United Kingdom", code: "GB", dialCode: "44" },
     { name: "United States", code: "US", dialCode: "1" },
