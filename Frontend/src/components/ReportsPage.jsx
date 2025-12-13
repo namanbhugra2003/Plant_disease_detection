@@ -18,7 +18,7 @@ const ReportsPage = () => {
           return;
         }
 
-        const response = await axios.get("http://localhost:5557/manager/reports", {
+        const response = await axios.get("https://plant-disease-detection-5ysx.onrender.com/manager/reports", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
