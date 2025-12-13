@@ -233,7 +233,7 @@ const AiTreatmentForm = () => {
     
     setLoading(true);
     try {
-      const response = await axios.post("http://localhost:5557/ai/treatment", formData);
+      const response = await axios.post("https://plant-disease-detection-5ysx.onrender.com/ai/treatment", formData);
       setTreatment(response.data.treatment);
       enqueueSnackbar("Treatment recommendation generated successfully!", { variant: "success" });
       setLoading(false);
