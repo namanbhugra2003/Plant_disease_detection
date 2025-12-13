@@ -20,7 +20,7 @@ const HomeAfterLogin = () => {
   useEffect(() => {
     const fetchMaterials = async () => {
       try {
-        const response = await axios.get('http://localhost:5557/materials');
+        const response = await axios.get('https://plant-disease-detection-5ysx.onrender.com/materials');
         setMaterials(response.data.data);
       } catch (error) {
         console.error('Error fetching materials:', error);
@@ -45,7 +45,7 @@ const HomeAfterLogin = () => {
       formData.append('file', image);
       try {
         const response = await axios.post(
-          'http://localhost:5000/predict',
+          'https://plant-disease-detection-5ysx.onrender.com/predict',
           formData,
           { headers: { 'Content-Type': 'multipart/form-data' } }
         );
