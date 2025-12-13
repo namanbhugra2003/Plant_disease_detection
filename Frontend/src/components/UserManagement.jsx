@@ -8,7 +8,7 @@ import ManagerTopNavBar from '../components/ManagerNavBar';
 import { ReportService } from '../services/reportService';
 
 
-const API_BASE_URL = 'http://localhost:5557/api';
+const API_BASE_URL = 'https://plant-disease-detection-5ysx.onrender.com/api';
 
 const roleColors = {
   'farmer': 'bg-green-100 text-green-800',
