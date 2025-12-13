@@ -113,7 +113,7 @@ const ManagerAlertForm = () => {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:5557/alerts", data, {
+      await axios.post("https://plant-disease-detection-5ysx.onrender.com/alerts", data, {
         headers: { Authorization: `Bearer ${userData.token}` },
       });
       enqueueSnackbar("Alert created successfully!", { variant: "success" });
