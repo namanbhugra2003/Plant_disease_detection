@@ -4,7 +4,7 @@ import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 
-const API_BASE_URL = 'http://localhost:5557/api';
+const API_BASE_URL = 'https://plant-disease-detection-5ysx.onrender.com/api';
 
 // Define role colors for consistent styling across reports
 const roleColors = {
