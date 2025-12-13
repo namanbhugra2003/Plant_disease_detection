@@ -40,7 +40,7 @@ export const UpdateSubmittedForm = ({ inquiryId, onClose, onUpdateSuccess }) => 
 
     setLoading(true);
     axios
-      .get(`http://localhost:5557/farmer/${inquiryId}`, {
+      .get(`https://plant-disease-detection-5ysx.onrender.com/farmer/${inquiryId}`, {
         headers: {
           Authorization: `Bearer ${userData.token}`,
         },
@@ -103,7 +103,7 @@ export const UpdateSubmittedForm = ({ inquiryId, onClose, onUpdateSuccess }) => 
 
     setLoading(true);
     axios
-      .put(`http://localhost:5557/farmer/${inquiryId}`, data, {
+      .put(`https://plant-disease-detection-5ysx.onrender.com/farmer/${inquiryId}`, data, {
         headers: {
           Authorization: `Bearer ${userData.token}`,
         },
