@@ -31,7 +31,7 @@ const ShowMaterial = ({ id, onClose }) => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5557/materials/${id}`)
+      .get(`https://plant-disease-detection-5ysx.onrender.com/materials/${id}`)
       .then((response) => {
         setMaterial(response.data);
         setLoading(false);
