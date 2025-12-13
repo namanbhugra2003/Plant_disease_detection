@@ -43,7 +43,7 @@ const ManagerDashboard = () => {
 
   const fetchForms = async () => {
     try {
-      const response = await axios.get("http://localhost:5557/manager/forms", {
+      const response = await axios.get("https://plant-disease-detection-5ysx.onrender.com/manager/forms", {
         headers: { Authorization: `Bearer ${token}` },
         params: { status: statusFilter, search: searchQuery, date: searchDate },
       });
@@ -58,7 +58,7 @@ const ManagerDashboard = () => {
   const updateStatus = async (id, status) => {
     try {
       await axios.put(
-        `http://localhost:5557/manager/form/${id}/status`,
+        `https://plant-disease-detection-5ysx.onrender.com/manager/form/${id}/status`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -72,7 +72,7 @@ const ManagerDashboard = () => {
     if (!reply.trim()) return;
     try {
       await axios.post(
-        `http://localhost:5557/manager/form/${id}/reply`,
+        `https://plant-disease-detection-5ysx.onrender.com/manager/form/${id}/reply`,
         { reply },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -86,7 +86,7 @@ const ManagerDashboard = () => {
 
   const deleteReply = async (id) => {
     try {
-      await axios.delete(`http://localhost:5557/manager/form/${id}/reply`, {
+      await axios.delete(`https://plant-disease-detection-5ysx.onrender.com/manager/form/${id}/reply`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       fetchForms();
