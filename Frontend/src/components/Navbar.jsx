@@ -75,39 +75,7 @@ const Navbar = () => {
               AgriGuard
             </Link>
 
-            {/* Right menu */}
-            <div className="flex items-center space-x-8">
-              {/* Services Dropdown */}
-              <div className="relative" ref={dropdownRef}>
-                <button
-                  onClick={() => setIsDropdownOpen(prev => !prev)}
-                  className="flex items-center gap-1 font-semibold hover:text-green-400 transition"
-                  aria-expanded={isDropdownOpen}
-                >
-                  Services
-                  <FaCaretDown
-                    className={`transition-transform ${
-                      isDropdownOpen ? 'rotate-180' : ''
-                    }`}
-                  />
-                </button>
-
-                <AnimatePresence>
-                  {isDropdownOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: -8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -8 }}
-                      className="absolute right-0 mt-3 w-48 bg-white rounded-md shadow-lg overflow-hidden z-40"
-                    >
-                      {['Service 1', 'Service 2', 'Service 3'].map((service, i) => (
-                        <Link
-                          key={i}
-                          to={`/service${i + 1}`}
-                          className="block px-4 py-2 text-gray-800 hover:bg-green-100 transition"
-                        >
-                          {service}
-                        </Link>
+            
                       ))}
                     </motion.div>
                   )}
