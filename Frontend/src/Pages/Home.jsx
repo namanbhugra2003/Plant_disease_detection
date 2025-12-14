@@ -196,12 +196,7 @@ const Home = () => {
       >
         Get Started
       </button>
-      <button
-        className="border-2 border-white text-white px-8 py-3 rounded-full font-semibold text-lg hover:bg-white hover:text-green-800 transition duration-300"
-        onClick={() => navigate('/about')}
-      >
-        Learn More
-      </button>
+    
     </motion.div>
     
     {/* Key Features */}
