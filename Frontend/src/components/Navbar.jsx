@@ -56,51 +56,46 @@ const Navbar = () => {
   };
 
   return (
-    <AnimatePresence>
-      {isVisible && (
-        <motion.nav
-          initial="hidden"
-          animate="visible"
-          exit="hidden"
-          variants={navbarVariants}
-          className={`fixed top-0 w-full z-30 transition-all duration-200 ${
-            isScrolled
-              ? 'bg-black bg-opacity-30 backdrop-blur-lg'
-              : 'bg-transparent'
-          } text-white`}
-        >
-          <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-            {/* Logo */}
-            <Link to="/" className="text-2xl font-bold tracking-wide">
-              AgriGuard
+  <AnimatePresence>
+    {isVisible && (
+      <motion.nav
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={navbarVariants}
+        className={`fixed top-0 w-full z-30 transition-all duration-200 ${
+          isScrolled
+            ? 'bg-black bg-opacity-30 backdrop-blur-lg'
+            : 'bg-transparent'
+        } text-white`}
+      >
+        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+          {/* Logo */}
+          <Link to="/" className="text-2xl font-bold tracking-wide">
+            AgriGuard
+          </Link>
+
+          {/* Auth links */}
+          <div className="flex space-x-6">
+            <Link
+              to="/login"
+              className="font-semibold hover:text-green-400 transition"
+            >
+              Sign In
             </Link>
-
-            
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Auth links */}
-              <Link
-                to="/login"
-                className="font-semibold hover:text-green-400 transition"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/register"
-                className="font-semibold hover:text-green-400 transition"
-              >
-                Register
-              </Link>
-            </div>
+            <Link
+              to="/register"
+              className="font-semibold hover:text-green-400 transition"
+            >
+              Register
+            </Link>
           </div>
-        </motion.nav>
-      )}
-    </AnimatePresence>
-  );
+        </div>
+      </motion.nav>
+    )}
+  </AnimatePresence>
+);
+
 };
 
 export default Navbar;
