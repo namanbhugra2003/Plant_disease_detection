@@ -8,7 +8,7 @@ import WhatWeOffer from '../components/WhatWeOffer';
 import { FaRobot, FaChartLine, FaGraduationCap, FaPiggyBank } from "react-icons/fa6";
 const Home = () => {
   const [scrollY, setScrollY] = useState(0);
-  // const featuresRef = useRef(null);
+  // const featuresRef = useRef(null)
   const navigate = useNavigate();
   const whatWeOfferRef = useRef(null);
 
