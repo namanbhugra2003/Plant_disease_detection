@@ -15,7 +15,8 @@ const genAI = new GoogleGenerativeAI(apiKey);
 
 // Initialize Gemini model
 const model = genAI.getGenerativeModel({
-  model: "gemini-pro",
+model: "gemini-1.0-pro",
+
   systemInstruction:
     "Generate AI-based treatment recommendations for plant diseases in JSON format. Use simple and clear English.",
 });
