@@ -1,19 +1,25 @@
 import express from "express";
-import OpenAI from "openai";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
 
 dotenv.config();
 
 const router = express.Router();
 
-// Initialize OpenAI
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
-if (!process.env.OPENAI_API_KEY) {
-  console.error("Error: OPENAI_API_KEY is not defined in .env");
+// Check API key
+if (!process.env.GEMINI_API_KEY) {
+  console.error("Error: GEMINI_API_KEY is not defined in .env");
 }
+
+// Initialize Gemini
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
+
+// Use FREE & STABLE model
+const model = genAI.getGenerativeModel({
+  model: "models/gemini-1.0-pro",
+  systemInstruction:
+    "Generate AI-based treatment recommendations for plant diseases in JSON format. Use simple and clear English. Always return valid JSON only.",
+});
 
 router.post("/treatment", async (req, res) => {
   const {
@@ -36,7 +42,7 @@ router.post("/treatment", async (req, res) => {
 
     const prompt = `
 Based on the following input from a farmer, provide treatment recommendations strictly in JSON format.
-Ensure the output is always valid JSON without any extra text or markdown formatting.
+Do NOT include markdown, explanations, or extra text.
 
 Input Details:
 - Plant Name: ${plantName}
@@ -49,45 +55,38 @@ Input Details:
 - Preferred Treatment Type: ${preferredTreatmentType}
 - Previous Disease History: ${previousDiseaseHistory}
 
-Expected JSON Output Format:
+Return ONLY this JSON structure:
 {
-  "disease_explanation": "Brief explanation of the disease",
+  "disease_explanation": "",
   "treatment_recommendations": {
-    "organic": "Organic treatment options (if applicable)",
-    "chemical": "Chemical treatment options (if applicable)",
-    "both": "Both organic and chemical treatment options"
+    "organic": "",
+    "chemical": "",
+    "both": ""
   },
-  "preventive_measures": "Preventive measures to avoid future outbreaks",
-  "best_recovery_practices": "Best practices for plant recovery",
-  "expert_advice": "Any additional expert advice"
+  "preventive_measures": "",
+  "best_recovery_practices": "",
+  "expert_advice": ""
 }
 `;
 
-    // Call OpenAI
-    const aiResponse = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Generate AI-based treatment recommendations for plant diseases in JSON format. Use simple and clear English. Always return valid JSON only.",
-        },
-        {
-          role: "user",
-          content: prompt,
-        },
-      ],
-      temperature: 0.3,
-    });
+    // Call Gemini
+    const result = await model.generateContent(prompt);
+    const responseText = result.response.text();
 
-    const responseText = aiResponse.choices[0].message.content;
     console.log("Raw AI Response:", responseText);
 
-    // Remove possible markdown
-    const cleanResponse = responseText.replace(/```json|```/g, "").trim();
-
-    // Parse JSON
-    const parsedResponse = JSON.parse(cleanResponse);
+    // Clean & parse JSON safely
+    let parsedResponse;
+    try {
+      parsedResponse = JSON.parse(
+        responseText.replace(/```json|```/g, "").trim()
+      );
+    } catch (err) {
+      console.error("Invalid JSON from Gemini:", responseText);
+      return res.status(500).json({
+        message: "AI returned invalid JSON",
+      });
+    }
 
     res.json({ treatment: parsedResponse });
   } catch (error) {
