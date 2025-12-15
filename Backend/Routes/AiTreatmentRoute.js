@@ -15,9 +15,11 @@ const genAI = new GoogleGenerativeAI(apiKey);
 
 // Initialize Gemini model
 const model = genAI.getGenerativeModel({
-  model: "gemini-1.5-flash",
-  systemInstruction: "Generate AI-based treatment recommendations for plant diseases in JSON format. Use simple and clear English.",
+  model: "gemini-pro",
+  systemInstruction:
+    "Generate AI-based treatment recommendations for plant diseases in JSON format. Use simple and clear English.",
 });
+
 
 router.post("/treatment", async (req, res) => {
   const {
