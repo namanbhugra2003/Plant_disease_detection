@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import App from './App.jsx'
 import './index.css'
+import "./axiosInterceptor";
 
 try {
   const userString = localStorage.getItem("user");
