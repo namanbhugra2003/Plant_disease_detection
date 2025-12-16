@@ -12,6 +12,9 @@ import alertRoutes from "./Routes/alertRoutes.js";
 import ManagerRoutes from "./Routes/ManagerRoutes.js";
 import activityRoutes from './Routes/activityRoutes.js';
 
+import plantPredictRoute from "./Routes/plantPredictRoute.js";
+
+
 
 
 const app = express();
@@ -39,7 +42,8 @@ app.use("/api/auth", userRoutes);
 app.use("/api/test", testRoute);
 
 app.use('/api/activities', activityRoutes);
-
+// predict route
+app.use("/", plantPredictRoute);
 // Feature Routes
 app.use("/farmer", FarmerFormRoute);
 app.use("/ai", AiTreatmentRoute);
