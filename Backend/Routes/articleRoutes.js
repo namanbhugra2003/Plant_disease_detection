@@ -5,6 +5,7 @@ import path from 'path';
 import Activity from "../Models/Activity.js";
 import authenticateToken, { authorize }
   from "../Middleware/authMiddleware.js";
+const router = express.Router();
 // 🔐 Sab article routes ke liye login required
 router.use(authenticateToken);
 
