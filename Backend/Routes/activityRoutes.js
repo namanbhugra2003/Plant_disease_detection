@@ -6,7 +6,7 @@ import authenticateToken, { authorize }
 const router = express.Router();
 
 // 🔐 1️⃣ Sab routes ke liye authentication mandatory
-router.use(authenticateToken,authorize("admin");
+router.use(authenticateToken,authorize("admin"));
 
 
 // Get recent activities
