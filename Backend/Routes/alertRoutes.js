@@ -5,7 +5,7 @@ import authenticateToken, { authorize } from '../Middleware/authMiddleware.js';
 const router = express.Router();
 
 // Create Alert
-router.post('/', authenticateToken, authorize('manager'), async (req, res) => {
+router.post('/', authenticateToken, authorize('admin'), async (req, res) => {
   try {
     const alert = await Alert.create({ ...req.body, createdBy: req.user._id });
     res.status(201).json(alert);
@@ -25,7 +25,7 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Update Alert
-router.put('/:id', authenticateToken, authorize('manager'), async (req, res) => {
+router.put('/:id', authenticateToken, authorize('admin'), async (req, res) => {
   try {
     const updated = await Alert.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.status(200).json(updated);
@@ -35,7 +35,7 @@ router.put('/:id', authenticateToken, authorize('manager'), async (req, res) => 
 });
 
 // Delete Alert
-router.delete('/:id', authenticateToken, authorize('manager'), async (req, res) => {
+router.delete('/:id', authenticateToken, authorize('admin'), async (req, res) => {
   try {
     await Alert.findByIdAndDelete(req.params.id);
     res.status(200).json({ message: 'Alert deleted successfully' });
