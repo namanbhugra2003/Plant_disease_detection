@@ -1,6 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
 
-
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLeaf, FaArrowDown, FaCamera, FaCloudUploadAlt, FaRobot, FaBullhorn, FaRedo } from 'react-icons/fa';
 import axios from 'axios';
