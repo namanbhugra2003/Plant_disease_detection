@@ -1,9 +1,12 @@
 import express from "express";
 import multer from "multer";
 import axios from "axios";
-
+import authenticateToken, { authorize }
+  from "../Middleware/authMiddleware.js";
 const router = express.Router();
 const upload = multer(); // memory storage
+// 🔐 Sab article routes ke liye login required
+router.use(authenticateToken);
 
 router.post("/predict", upload.single("image"), async (req, res) => {
   try {
