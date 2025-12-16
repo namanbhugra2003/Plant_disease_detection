@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FaTimes, FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+
 
 const FeaturePopup = ({ feature, onClose }) => {
   const getButtonText = (title) => {
@@ -223,12 +223,12 @@ const FeaturePopup = ({ feature, onClose }) => {
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              <Link
+              <button
                 to={getButtonLink(updatedFeature.title)}
                 className="inline-flex items-center bg-green-500 text-white font-semibold px-6 py-3 rounded-full hover:bg-green-600 transition duration-300"
               >
                 {getButtonText(updatedFeature.title)} <FaArrowRight className="ml-2" />
-              </Link>
+             </button>
             </motion.div>
           </div>
           
