@@ -3,6 +3,10 @@ import Article from '../Models/Article.js';
 import multer from 'multer';
 import path from 'path';
 import Activity from "../Models/Activity.js";
+import authenticateToken, { authorize }
+  from "../Middleware/authMiddleware.js";
+// 🔐 Sab article routes ke liye login required
+router.use(authenticateToken);
 
 
 const storage = multer.diskStorage({
@@ -19,7 +23,7 @@ const upload = multer({ storage: storage });
 
 const router = express.Router();
 
-router.post('/', upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), async (req, res) => {
+router.post('/',   authorize("admin"), upload.fields([{ name: 'image', maxCount: 1 }, { name: 'video', maxCount: 1 }]), async (req, res) => {
 
   try {
     const { title, content, link, image, video } = req.body;
@@ -100,7 +104,7 @@ router.get('/:id', async (req, res) => {
 });
 
 // Update an article
-router.put('/:id', async (req, res) => {
+router.put('/:id',  authorize("admin"), async (req, res) => {
   try {
     const { id } = req.params;
     const { title, content, link, image, video } = req.body;
@@ -138,7 +142,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 // DELETE route to delete an article
-router.delete('/:id', async (req, res) => {
+router.delete('/:id',  authorize("admin"), async (req, res) => {
   try {
     const { id } = req.params;
     const result = await Article.findByIdAndDelete(id);
