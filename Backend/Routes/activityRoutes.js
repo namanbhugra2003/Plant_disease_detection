@@ -1,7 +1,13 @@
 import express from 'express';
 import Activity from '../Models/Activity.js';
+import authenticateToken, { authorize } 
+  from "../Middleware/authMiddleware.js";
 
 const router = express.Router();
+
+// 🔐 1️⃣ Sab routes ke liye authentication mandatory
+router.use(authenticateToken,authorize("admin");
+
 
 // Get recent activities
 router.get('/recent', async (req, res) => {
