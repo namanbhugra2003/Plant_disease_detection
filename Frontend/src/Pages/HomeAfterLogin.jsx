@@ -1,4 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
+
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaLeaf, FaArrowDown, FaCamera, FaCloudUploadAlt, FaRobot, FaBullhorn, FaRedo } from 'react-icons/fa';
 import axios from 'axios';
@@ -138,8 +140,85 @@ const HomeAfterLogin = () => {
               </button>
             </div>
           )}
+          {/* Feature cards */}
+<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+  {[
+    {
+      icon: FaCamera,
+      title: 'Quick Detection',
+      description: 'Instant disease detection from plant images.'
+    },
+    {
+      icon: FaRobot,
+      title: 'AI Powered Analysis',
+      description: 'Accurate prediction using AI models.'
+    },
+    {
+      icon: FaLeaf,
+      title: 'Treatment Suggestions',
+      description: 'Actionable treatment recommendations.'
+    }
+  ].map((feature, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.2 }}
+      className="bg-green-50 p-6 rounded-xl text-center shadow-md"
+    >
+      <feature.icon className="text-4xl text-green-500 mb-4 mx-auto" />
+      <h3 className="text-xl font-semibold mb-2 text-green-700">
+        {feature.title}
+      </h3>
+      <p className="text-gray-600">{feature.description}</p>
+    </motion.div>
+  ))}
+</div>
+
         </div>
       </div>
+      {/* Featured Plant Medicines */}
+<div className="bg-gray-100 py-16">
+  <div className="container mx-auto px-4">
+    <h2 className="text-4xl font-bold text-center mb-12 text-green-600">
+      Featured Plant Medicines
+    </h2>
+
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+      {materials.slice(0, 4).map((material, index) => (
+        <motion.div
+          key={material._id}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: index * 0.1 }}
+          className="bg-white rounded-lg shadow-md overflow-hidden text-center"
+        >
+          <div className="bg-green-100 p-4 flex justify-center">
+            <img
+              src={material.image || 'https://via.placeholder.com/100'}
+              alt={material.materialName}
+              className="w-32 h-32 rounded-full object-cover"
+            />
+          </div>
+
+          <div className="p-6">
+            <h3 className="text-xl font-semibold text-green-700 mb-2">
+              {material.materialName}
+            </h3>
+            <p className="text-gray-600">Category: {material.category}</p>
+            <p className="text-gray-600 mb-4">
+              Usage: {material.diseaseUsage}
+            </p>
+            <span className="font-bold text-green-600">
+              ${material.pricePerUnit}
+            </span>
+          </div>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</div>
+
 
       <AnimatePresence>
         {showScanModal && (
