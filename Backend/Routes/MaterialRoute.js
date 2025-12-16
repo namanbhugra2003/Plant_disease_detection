@@ -1,10 +1,16 @@
 import express from "express";
 import { Material } from "../Models/materialModel.js";
+import authenticateToken, { authorize } 
+  from "../Middleware/authMiddleware.js";
 
 const router = express.Router();
 
+// 🔐 1️⃣ Sab routes ke liye authentication mandatory
+router.use(authenticateToken);
+
+
 // Route for Saving a New Material
-router.post('/', async (request, response) => {
+router.post('/', authorize("admin"),async (request, response) => {
   try {
     if (
       !request.body.materialName ||
@@ -86,7 +92,7 @@ response.status(500).send({ message: error.message });
 });
 
 // Route for Update a Material
-router.put('/:id', async (request, response) => {
+router.put('/:id', authorize("admin"),async (request, response) => {
   try {
     const { id } = request.params;
 
@@ -120,7 +126,7 @@ router.put('/:id', async (request, response) => {
 });
 
 // Route for Delete a Material
-router.delete('/:id', async (request, response) => {
+router.delete('/:id',authorize("admin"), async (request, response) => {
   try {
     const { id } = request.params;
 
