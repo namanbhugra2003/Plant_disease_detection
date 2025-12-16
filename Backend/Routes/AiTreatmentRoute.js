@@ -1,6 +1,7 @@
 import express from "express";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import dotenv from "dotenv";
+import authenticateToken from "../Middleware/authMiddleware.js";
 
 dotenv.config();
 
@@ -21,7 +22,7 @@ const model = genAI.getGenerativeModel({
     "Generate AI-based treatment recommendations for plant diseases in JSON format. Use simple and clear English. Always return valid JSON only.",
 });
 
-router.post("/treatment", async (req, res) => {
+router.post("/treatment",authenticateToken, async (req, res) => {
   const {
     plantName,
     detectedDisease,
