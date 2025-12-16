@@ -12,7 +12,7 @@ router.post("/predict", upload.single("image"), async (req, res) => {
     }
 
     const hfResponse = await axios.post(
-      "https://api-inference.huggingface.co/models/linkanjarad/mobilenet_v2_1.0_224-plant-disease-identification?wait_for_model=true",
+      "https://router.huggingface.co/hf-inference/models/linkanjarad/mobilenet_v2_1.0_224-plant-disease-identification?wait_for_model=true",
       req.file.buffer,
       {
         headers: {
