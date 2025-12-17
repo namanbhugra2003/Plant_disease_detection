@@ -1,23 +1,33 @@
 import axios from "axios";
 
-axios.interceptors.response.use(
-  // ✅ Agar response sahi hai, to bas return
-  (response) => response,
+axios.interceptors.request.use(
+  (config) => {
+    const user = JSON.parse(localStorage.getItem("user"));
 
-  // ❌ Agar error aaya
+    // ❌ If no token, redirect to login
+    if (!user || !user.token) {
+      window.location.href = "/login";
+      return Promise.reject("No auth token");
+    }
+
+    // ✅ Attach token
+    config.headers.Authorization = `Bearer ${user.token}`;
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// ❌ Handle expired / invalid token
+axios.interceptors.response.use(
+  (response) => response,
   (error) => {
     if (error.response) {
       const status = error.response.status;
 
-      // 🔐 Unauthorized / Forbidden
       if (status === 401 || status === 403) {
-        // Token & user data hata do
         localStorage.removeItem("user");
-
-        // Axios se auth header hata do
         delete axios.defaults.headers.common["Authorization"];
-
-        // Login page pe redirect
         window.location.href = "/login";
       }
     }
