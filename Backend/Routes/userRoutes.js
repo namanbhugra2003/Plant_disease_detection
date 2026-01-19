@@ -86,8 +86,10 @@ router.post("/login", async (req, res) => {
     console.error("Error in login:", error);
     res.status(500).json({ message: "Server error" });
   }
-});//user count
-router.get('/count', async (req, res) => {
+});
+//user count one should add proper authentication but 
+router.get('/count', authenticateToken,
+  authorize('admin'),async (req, res) => {
   try {
     const count = await User.countDocuments();
     res.json({ count });
@@ -99,7 +101,8 @@ router.get('/count', async (req, res) => {
 
 
 // User Registration Stats Route
-router.get('/registration-stats', async (req, res) => {
+router.get('/registration-stats', authenticateToken,
+  authorize('admin'),async (req, res) => {
   try {
     const users = await User.find({}, 'createdAt');
     const stats = {};
@@ -121,7 +124,8 @@ router.get('/registration-stats', async (req, res) => {
 });
 
 /// Get all users (no authentication required)
-router.get('/', async (req, res) => {
+router.get('/', authenticateToken,
+  authorize('admin'),async (req, res) => {
   try {
     const users = await User.find({}, '-password');
     res.json(users);
@@ -131,7 +135,8 @@ router.get('/', async (req, res) => {
 });
 
 // Delete user (no authentication required)
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticateToken,
+  authorize('admin'),async (req, res) => {
   try {
     await User.findByIdAndDelete(req.params.id);
     res.json({ message: 'User deleted successfully' });
@@ -142,7 +147,8 @@ router.delete('/:id', async (req, res) => {
 
 
 // Update user
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticateToken,
+  authorize('admin'),async (req, res) => {
   try {
     const { username, email, role } = req.body;
     const userId = req.params.id;
