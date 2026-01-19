@@ -3,7 +3,8 @@ import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import User from "../Models/User.js";
 import { JWT_SECRET } from "../config.js";
-import authenticateToken from "../Middleware/authMiddleware.js";
+import authenticateToken, { authorize } 
+  from "../Middleware/authMiddleware.js";
 import Activity from "../Models/Activity.js";
 
 const router = express.Router();
